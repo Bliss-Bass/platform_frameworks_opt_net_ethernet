@@ -164,6 +164,13 @@ public class EthernetServiceImpl extends IEthernetManager.Stub {
         enforceAccessPermission();
         mTracker.removeListener(listener);
     }
+	
+	public void updateIpConfiguration(String iface, IpConfiguration ipConfiguration){
+		Log.i(TAG, "Enter in updateIpConfiguration, iface == " + iface);
+        mTracker.updateIpConfiguration(iface, ipConfiguration);
+		enforceAccessPermission();
+		start();
+    }
 
     @Override
     public void setIncludeTestInterfaces(boolean include) {
