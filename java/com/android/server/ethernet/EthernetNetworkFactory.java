@@ -479,7 +479,7 @@ public class EthernetNetworkFactory extends NetworkFactory {
                     getNetworkScore(), config, mNetworkFactory.getProvider()) {
                 public void unwanted() {
                     if (this == mNetworkAgent) {
-                        stop();
+                        // stop();
                     } else if (mNetworkAgent != null) {
                         Log.d(TAG, "Ignoring unwanted as we have a more modern " +
                                 "instance");
