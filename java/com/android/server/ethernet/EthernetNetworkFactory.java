@@ -215,7 +215,7 @@ public class EthernetNetworkFactory extends NetworkFactory {
     LinkProperties getLinkProperties(String iface) {
         NetworkInterfaceState network = mTrackingInterfaces.get(iface);
         if (network != null) {
-            network.getLinkProperties();
+            return network.getLinkProperties();
         }
     }
 
