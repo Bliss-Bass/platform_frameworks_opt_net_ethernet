@@ -212,6 +212,13 @@ public class EthernetNetworkFactory extends NetworkFactory {
         }
     }
 
+    LinkProperties getLinkProperties(String iface) {
+        NetworkInterfaceState network = mTrackingInterfaces.get(iface);
+        if (network != null) {
+            network.getLinkProperties();
+        }
+    }
+
     private NetworkInterfaceState networkForRequest(NetworkRequest request) {
         String requestedIface = null;
 
@@ -398,6 +405,10 @@ public class EthernetNetworkFactory extends NetworkFactory {
 
         boolean isRestricted() {
             return !mCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_RESTRICTED);
+        }
+
+        LinkProperties getLinkProperties() {
+            return mLinkProperties;
         }
 
         /**

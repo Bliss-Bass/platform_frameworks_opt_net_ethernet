@@ -23,6 +23,7 @@ import android.net.IEthernetServiceListener;
 import android.net.ITetheredInterfaceCallback;
 import android.net.IpConfiguration;
 import android.net.NetworkStack;
+import android.net.LinkProperties;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -184,6 +185,21 @@ public class EthernetServiceImpl extends IEthernetManager.Stub {
         NetworkStack.checkNetworkStackPermissionOr(mContext,
                 android.Manifest.permission.NETWORK_SETTINGS);
         mTracker.releaseTetheredInterface(callback);
+    }
+
+    /**
+     * Get Ethernet LinkProperties
+     * @return the Ethernet LinkProperties, contained in {@link LinkProperties}.
+     */
+    @Override
+    public LinkProperties getLinkProperties(String iface) {
+        enforceAccessPermission();
+
+        if (mTracker.isRestrictedInterface(iface)) {
+            enforceUseRestrictedNetworksPermission();
+        }
+
+        return mTracker.getLinkProperties(iface);
     }
 
     @Override

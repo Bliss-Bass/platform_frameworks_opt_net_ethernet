@@ -28,6 +28,7 @@ import android.net.IpConfiguration;
 import android.net.IpConfiguration.IpAssignment;
 import android.net.IpConfiguration.ProxySettings;
 import android.net.LinkAddress;
+import android.net.LinkProperties;
 import android.net.NetworkCapabilities;
 import android.net.NetworkStack;
 import android.net.StaticIpConfiguration;
@@ -173,7 +174,15 @@ final class EthernetTracker {
     }
 
     IpConfiguration getIpConfiguration(String iface) {
-        return mIpConfigurations.get(iface);
+        IpConfiguration ipConfiguration = mIpConfigurations.get(iface);
+        if (ipConfiguration == null) {
+            ipConfiguration = createDefaultIpConfiguration();
+        }
+        return ipConfiguration;
+    }
+
+    LinkProperties getLinkProperties(String iface) {
+        return mFactory.getLinkProperties(iface);
     }
 
     boolean isTrackingInterface(String iface) {
