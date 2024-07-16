@@ -217,6 +217,7 @@ public class EthernetNetworkFactory extends NetworkFactory {
         if (network != null) {
             return network.getLinkProperties();
         }
+        return new LinkProperties();
     }
 
     private NetworkInterfaceState networkForRequest(NetworkRequest request) {
