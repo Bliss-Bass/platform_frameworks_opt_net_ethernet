@@ -473,11 +473,11 @@ public class EthernetNetworkFactory extends NetworkFactory {
         }
 
         void onIpLayerStarted(LinkProperties linkProperties) {
-            if (mNetworkAgent != null) {
-                Log.e(TAG, "Already have a NetworkAgent - aborting new request");
-                stop();
-                return;
-            }
+            // if (mNetworkAgent != null) {
+            //     Log.e(TAG, "Already have a NetworkAgent - aborting new request");
+            //     stop();
+            //     return;
+            // }
             mLinkProperties = linkProperties;
 
             // Create our NetworkAgent.
